@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            {{name}} huba {{age}} nihao
+            <div id="huxiaoba">
+                huba
+            </div>
+        </div>
+        <span>{{age}}</span>
+        <div>{{address}}</div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        // 数据变化了,我可以监控到数据的变化
+        // 属性的取值和修改值 我们需要监控到
+        const vm = new Vue({
+            data:{
+                name:"huba",
+                age:20,
+                address:["北京"]
+            },
+            el:"#app"
+        })
+        // 1.0 模板引擎 性能差 没有引入虚拟Dom
+        // 2.0 采用虚拟Dom 数据变化之后 比较虚拟Dom的差异 最后更新需要跟新的地方
+        // 需要将模板变成我们的js语法 通过js语法 生成虚拟Dom
+        // 我们需要先变成语法树 然后重新组装语法
+        // 将template 语法 转换为 render函数
+    </script>
+</body>
+</html>
