@@ -1,3 +1,4 @@
+import Watcher from "./observe/watcher"
 import { createElementVNode, createTextVNode } from "./vdom"
 // 这个函数有初次渲染的功能,又有更新的功能
 function createElm(vnode){
@@ -76,7 +77,10 @@ export function mountComponnent (vm,el) {
     // 2.根据虚拟DOM 生成 真实DOM
     // 3.插入到el元素中
     vm.$el = el
-    vm._update(vm._render()) // vm.$options.render() -> 虚拟节点
+    const updateComponnent = ()=>{
+        vm._update(vm._render()) // vm.$options.render() -> 虚拟节点
+    }
+    new Watcher(vm,updateComponnent,true) //true用于标识是一个渲染过程
 }
 
 // Vue的核心流程

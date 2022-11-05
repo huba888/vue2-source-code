@@ -1,3 +1,4 @@
+import Dep from "../dep"
 import { newArrayProto } from "./array"
 
 class Observe {
@@ -28,14 +29,19 @@ class Observe {
 }
 export function defineReactive(target,key,value){
     observe(value)
+    let dep = new Dep() // 每一个属性都有一个dep
     Object.defineProperty(target,key,{
         get(){
+            if(Dep.target){
+                dep.depend()
+            }
             return value
         },
         set(newValue){
             if(newValue === value) return
             observe(newValue)
             value = newValue
+            dep.notify() // 通知更新
         }
     })
 }
